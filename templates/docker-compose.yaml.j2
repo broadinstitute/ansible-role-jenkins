@@ -1,0 +1,38 @@
+jenkins:
+  image: jenkins/jenkins:{{ jenkins_version }}
+  environment:
+    JAVA_OPTS: {{ jenkins_java_opts }}
+  log_driver: "syslog"
+  log_opt:
+    tag: "jenkins-proxy"
+  ports:
+    - "{{ jenkins_port }}:{{ jenkins_port }}"
+    - "50000:50000"
+  volumes:
+    - {{ jenkins_home }}:/var/jenkins_home
+    - {{ jenkins_logs }}:/var/log/jenkins
+    - /etc/localtime:/etc/localtime:ro
+    - /app/logging.properties:/etc/logging.properties
+
+proxy:
+   image: broadinstitute/apache-proxy:{{ apache_proxy_verion }}
+   ports:
+     - "{{ apache_http_port }}:{{ apache_http_port }}""
+     - "{{ apache_https_port }}:{{ apache_https_port }}"
+   links:
+     - jenkins:jenkins
+   log_driver: "syslog"
+   log_opt:
+     tag: "jenkins-app"
+   environment:
+     SERVER_ADMIN: {{ jenkins_admin }}
+     SERVER_NAME: {{ apache_url }}
+     PROXY_URL: {{ jenkins_url }}
+     SSL_PROTOCOL: "-SSLv2 -SSLv3 -TLSv1 -TLSv1.1 +TLSv1.2"
+     LOG_LEVEL: debug
+   volumes:
+     - {{ apache_tls }}/server.crt:/etc/ssl/certs/server.crt:ro
+     - { apache_tls }}/server.key:/etc/ssl/private/server.key:ro
+     - { apache_tls }}/ca-bundle.crt:/etc/ssl/certs/ca-bundle.crt:ro
+     - /app/site.conf:/etc/apache2/sites-available/site.conf:ro
+     - /etc/localtime:/etc/localtime:ro

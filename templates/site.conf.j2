@@ -1,0 +1,56 @@
+ServerAdmin {{ jenkins_admin }}
+ServerName {{ apache_url }}
+ServerTokens ProductOnly
+TraceEnable off
+
+LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+LogLevel debug
+
+Header unset X-Frame-Options
+Header always set X-Frame-Options SAMEORIGIN
+
+ProxyTimeout 900
+
+<VirtualHost _default_:{{ apache_http_port }}>
+    ErrorLog /dev/stdout
+    CustomLog "/dev/stdout" combined
+    RewriteEngine On
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
+</VirtualHost>
+
+<VirtualHost _default_:{{ apache_https_port }}>
+    ErrorLog /dev/stdout
+    CustomLog "/dev/stdout" combined
+
+    SSLEngine on
+    SSLProxyEngine on
+    SSLProtocol -SSLv2 -SSLv3 -TLSv1 -TLSv1.1 +TLSv1.2
+    SSLCipherSuite ALL:!aNULL:RC4+RSA:+HIGH:+MEDIUM:+LOW:+EXP:+eNULL
+    SSLCertificateFile "/etc/ssl/certs/server.crt"
+    SSLCertificateKeyFile "/etc/ssl/private/server.key"
+    SSLCertificateChainFile "/etc/ssl/certs/ca-bundle.crt"
+
+    <Location ${PROXY_PATH}>
+        Header unset Access-Control-Allow-Origin
+        Header always set Access-Control-Allow-Origin "*"
+        Header unset Access-Control-Allow-Headers
+        Header always set Access-Control-Allow-Headers "authorization,content-type,accept,origin"
+        Header unset Access-Control-Allow-Methods
+        Header always set Access-Control-Allow-Methods "GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD"
+
+        RewriteEngine On
+        RewriteCond %{REQUEST_METHOD} OPTIONS
+        RewriteRule ^(.*)$ $1 [R=204,L]
+
+        <Limit OPTIONS>
+          Require all granted
+        </Limit>
+
+        ProxyPass {{ jenkins_url }}
+        ProxyPassReverse {{ jenkins_url }}
+        RequestHeader set X-Forwarded-Proto "https"
+        RequestHeader set X-Forwarded-Port "443"
+    </Location>
+
+</VirtualHost>

@@ -15,3 +15,34 @@
     mode: 0755
     owner: "{{ jenkins_config_owner }}"
     group: "{{ jenkins_config_group }}"
+
+- name: "creating jenkings working directory {{ jenkins_logs }}"
+  file:
+    path: "{{ jenkins_logs }}"
+    state: directory
+    mode: 0755
+    owner: "{{ jenkins_config_owner }}"
+    group: "{{ jenkins_config_group }}"
+
+- name: "creating apache tls directory {{ apache_tls }}"
+  file:
+    path: "{{ apache_tls }}"
+    state: directory
+    mode: 0755
+    owner: "{{ jenkins_config_owner }}"
+    group: "{{ jenkins_config_group }}"
+
+- name: Copy the docker compose configuration file for docker.
+  template:
+    src: docker-compose.yaml.j2
+    dest: /app/docker-compose.yaml
+
+- name: Copy the logging configuration file for jenkins.
+  template:
+    src: logging.properties.j2
+    dest: /app/logging.properties
+
+- name: Copy the logging configuration file for apache.
+  template:
+    src: site.conf.j2
+    dest: /app/site.conf
