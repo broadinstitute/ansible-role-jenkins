@@ -1,0 +1,2 @@
+---
+- include_tasks: "{{ jenkins_type }}/install.yml"
