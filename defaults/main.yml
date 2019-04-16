@@ -8,7 +8,7 @@ jenkins_logs: "/app/jenkins-logs"
 jenkins_java_opts: "-Djenkins.install.runSetupWizard=false"
 jenkins_config_owner: "jenkins"
 jenkins_config_group: "jenkins"
-jenkins_admin: dsptechops@broadinstitute.org
+jenkins_admin: "dsptechops@broadinstitute.org"
 jenkins_plugins:
   - git
   - log-parser
