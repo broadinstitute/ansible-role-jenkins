@@ -17,7 +17,7 @@ jenkins:
 proxy:
    image: broadinstitute/apache-proxy:{{ apache_proxy_verion }}
    ports:
-     - "{{ apache_http_port }}:{{ apache_http_port }}""
+     - "{{ apache_http_port }}:{{ apache_http_port }}"
      - "{{ apache_https_port }}:{{ apache_https_port }}"
    links:
      - jenkins:jenkins
@@ -31,8 +31,8 @@ proxy:
      SSL_PROTOCOL: "-SSLv2 -SSLv3 -TLSv1 -TLSv1.1 +TLSv1.2"
      LOG_LEVEL: debug
    volumes:
-     - {{ apache_tls }}/server.crt:/etc/ssl/certs/server.crt:ro
-     - { apache_tls }}/server.key:/etc/ssl/private/server.key:ro
-     - { apache_tls }}/ca-bundle.crt:/etc/ssl/certs/ca-bundle.crt:ro
+     - {{ apache_tls }}/server.crt:/etc/ssl/certs/server.crt:ro"
+     - {{ apache_tls }}/server.key:/etc/ssl/private/server.key:ro
+     - {{ apache_tls }}/ca-bundle.crt:/etc/ssl/certs/ca-bundle.crt:ro
      - /app/site.conf:/etc/apache2/sites-available/site.conf:ro
      - /etc/localtime:/etc/localtime:ro
