@@ -15,9 +15,9 @@
     owner: "{{ jenkins_config_owner }}"
     group: "{{ jenkins_config_group }}"
 
-- name: "creating apache tls directory {{ apache_tls }}"
+- name: "creating apache tls directory {{ nginx_tls }}"
   file:
-    path: "{{ apache_tls }}"
+    path: "{{ nginx_tls }}"
     state: directory
     mode: 0755
     owner: "{{ jenkins_config_owner }}"
