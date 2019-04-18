@@ -20,7 +20,7 @@ nginx:
   container_name: nginx
   ports:
     - "{{ nginx_http_port }}:{{ nginx_http_port }}"
-    - "{{ nginx_https_port }}":{{ nginx_htts_port }}"
+    - "{{ nginx_https_port }}":{{ nginx_https_port }}"
   links:
     - jenkins:jenkins
   volumes:
