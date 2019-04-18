@@ -1,13 +1,4 @@
 ---
-- name: "Adding the user {{ jenkins_config_owner  }}"
-  user:
-    name: "{{ jenkins_config_owner }}"
-    shell: /bin/bash
-    append: yes
-    generate_ssh_key: yes
-    ssh_key_bits: 2048
-    ssh_key_file: .ssh/id_rsa
-
 - name: "creating jenkings working directory {{ jenkins_home }}"
   file:
     path: "{{ jenkins_home }}"
@@ -44,5 +35,5 @@
 
 - name: Copy the logging configuration file for apache.
   template:
-    src: site.conf.j2
-    dest: /app/site.conf
+    src: default.conf.j2
+    dest: /app/default.conf
