@@ -55,3 +55,8 @@
   template:
     src: default.conf.j2
     dest: /app/default.conf
+
+- name: restart docker
+  systemd:
+    name: docker
+    state: restarted
