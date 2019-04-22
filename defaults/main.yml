@@ -9,7 +9,7 @@ jenkins_java_opts: "-Djenkins.install.runSetupWizard=false"
 jenkins_config_owner: "jenkins"
 jenkins_config_group: "jenkins"
 uid: 1000
-guid: 1000
+gid: 1000
 nginx_http_port:  80
 nginx_https_port: 443
 nginx_url: "duos-jenkins.dsp-techops.broadinstitute.org"

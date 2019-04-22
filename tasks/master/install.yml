@@ -3,7 +3,7 @@
   group:
     name: "{{ jenkins_config_group }}"
     state: present
-    guid: "{{ guid }}"
+    gid: "{{ gid }}"
 
 - name: Added auser a jenkins to machine
   user:
