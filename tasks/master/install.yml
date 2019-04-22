@@ -1,9 +1,3 @@
----
-- name: Ensure group "jenkins" exists
-  group:
-    name: "{{ jenkins_config_group }}"
-    state: present
-    gid: "{{ gid }}"
 
 - name: Added auser a jenkins to machine
   user:
@@ -18,7 +12,7 @@
     state: directory
     mode: 0755
     owner: "{{ jenkins_config_owner }}"
-    group: "{{ jenkins_config_group }}"
+    group: "{{ gid }}"
 
 - name: "creating jenkings working directory {{ jenkins_home }}"
   file:
@@ -26,7 +20,7 @@
     state: directory
     mode: 0755
     owner: "{{ jenkins_config_owner }}"
-    group: "{{ jenkins_config_group }}"
+    group: "{{ gid }}"
 
 - name: "creating jenkings working directory {{ jenkins_logs }}"
   file:
@@ -34,7 +28,7 @@
     state: directory
     mode: 0755
     owner: "{{ jenkins_config_owner }}"
-    group: "{{ jenkins_config_group }}"
+    group: "{{ gid }}"
 
 - name: "creating apache tls directory {{ nginx_tls }}"
   file:
@@ -42,7 +36,7 @@
     state: directory
     mode: 0755
     owner: "{{ jenkins_config_owner }}"
-    group: "{{ jenkins_config_group }}"
+    group: "{{ gid }}"
 
 - name: Copy the docker compose configuration file for docker.
   template:
