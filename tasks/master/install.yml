@@ -1,17 +1,10 @@
 
-- name: Added auser a jenkins to machine
-  user:
-    name: "{{ jenkins_config_owner }}"
-    shell: /bin/bash
-    groups: "{{ jenkins_config_group }}"
-    uid: "{{ uid }}"
-
 - name: "creating jenkings tmp directory"
   file:
     path: /var/lib/docker/tmp/
     state: directory
     mode: 0755
-    owner: "{{ jenkins_config_owner }}"
+    owner: "{{ uid }}"
     group: "{{ gid }}"
 
 - name: "creating jenkings working directory {{ jenkins_home }}"
@@ -19,7 +12,7 @@
     path: "{{ jenkins_home }}"
     state: directory
     mode: 0755
-    owner: "{{ jenkins_config_owner }}"
+    owner: "{{ uid }}"
     group: "{{ gid }}"
 
 - name: "creating jenkings working directory {{ jenkins_logs }}"
@@ -27,7 +20,7 @@
     path: "{{ jenkins_logs }}"
     state: directory
     mode: 0755
-    owner: "{{ jenkins_config_owner }}"
+    owner: "{{ uid }}"
     group: "{{ gid }}"
 
 - name: "creating apache tls directory {{ nginx_tls }}"
@@ -35,7 +28,7 @@
     path: "{{ nginx_tls }}"
     state: directory
     mode: 0755
-    owner: "{{ jenkins_config_owner }}"
+    owner: "{{ uid }}"
     group: "{{ gid }}"
 
 - name: Copy the docker compose configuration file for docker.
