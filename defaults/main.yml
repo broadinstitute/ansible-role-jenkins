@@ -13,5 +13,5 @@ server_cert: "{{ lookup('hashi_vault', 'secret=secret/dsde/dsp-techops/common/se
 nginx_http_port:  80
 nginx_https_port: 443
 nginx_url: "duos-jenkins.dsp-techops.broadinstitute.org"
-nginx_tls: "/app/tls/"
+nginx_tls: "/app/tls"
 nginx_conf: "/app/default.conf"
