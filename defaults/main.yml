@@ -6,12 +6,12 @@ jenkins_port: "8080"
 jenkins_home: "/app/jenkins_home"
 jenkins_logs: "/app/jenkins_logs"
 jenkins_java_opts: "-Djenkins.install.runSetupWizard=false"
-jenkins_config_owner: "jenkins"
-jenkins_config_group: "jenkins"
 uid: 1000
 gid: 1000
+server_key: "{{ lookup('hashi_vault', 'secret=secret/dsde/dsp-techops/common/server.key token=/tmp/vault-token-dsde url=https://clotho.broadinstitute.org:8200') }}"
+server_cert: "{{ lookup('hashi_vault', 'secret=secret/dsde/dsp-techops/common/server.crt token=/tmp/vault-token-dsde url=https://clotho.broadinstitute.org:8200') }}"
 nginx_http_port:  80
 nginx_https_port: 443
 nginx_url: "duos-jenkins.dsp-techops.broadinstitute.org"
-nginx_tls: "/app/tls"
+nginx_tls: "/app/tls/"
 nginx_conf: "/app/default.conf"

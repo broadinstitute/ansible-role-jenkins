@@ -31,6 +31,16 @@
     owner: "{{ uid }}"
     group: "{{ gid }}"
 
+- name: copy down server_key to /app dir
+  copy:
+    content: "{{ server_key.value }}"
+    dest: "{{ nginx_tls }}"
+
+- name: copy down server_cert to /app dir
+  copy:
+    content: "{{ server_cert.value }}"
+    dest: "{{ nginx_tls }}"
+
 - name: Copy the docker compose configuration file for docker.
   template:
     src: docker-compose.yaml.j2
