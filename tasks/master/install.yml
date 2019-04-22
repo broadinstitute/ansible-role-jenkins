@@ -23,23 +23,23 @@
     owner: "{{ uid }}"
     group: "{{ gid }}"
 
-- name: "creating apache tls directory {{ nginx_tls }}"
+- name: "creating apache tls directory {{ nginx_tls_dir }}"
   file:
-    path: "{{ nginx_tls }}"
+    path: "{{ nginx_tls_dir }}"
     state: directory
     mode: 0755
-    owner: "{{ uid }}"
-    group: "{{ gid }}"
+    owner: "root"
+    group: "root"
 
 - name: copy down server_key to /app dir
   copy:
     content: "{{ server_key.value }}"
-    dest: "{{ nginx_tls }}/server.key"
+    dest: "{{ nginx_tls_key }}"
 
 - name: copy down server_cert to /app dir
   copy:
     content: "{{ server_cert.value }}"
-    dest: "{{ nginx_tls }}/server.ctr"
+    dest: "{{ nginx_tls_cert }}"
 
 - name: Copy the docker compose configuration file for docker.
   template:
