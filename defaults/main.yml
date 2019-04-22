@@ -6,8 +6,10 @@ jenkins_port: "8080"
 jenkins_home: "/app/jenkins_home"
 jenkins_logs: "/app/jenkins_logs"
 jenkins_java_opts: "-Djenkins.install.runSetupWizard=false"
-jenkins_config_owner: "root"
-jenkins_config_group: "root"
+jenkins_config_owner: "jenkins"
+jenkins_config_group: "jenkins"
+uid: 1000
+guid: 1000
 nginx_http_port:  80
 nginx_https_port: 443
 nginx_url: "duos-jenkins.dsp-techops.broadinstitute.org"
