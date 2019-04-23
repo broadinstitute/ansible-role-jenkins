@@ -2,7 +2,14 @@
   user:
     name: jenkins
     state: present
-    generate_ssh_key: no
+
+- name: "creating jenkings tmp directory"
+  file:
+    path: "{{ jenkins_ssh_privkey_path }}"
+    state: touch
+    mode: 0600
+    owner: "{{ uid }}"
+    group: "{{ gid }}"
 
 - name: "creating jenkings tmp directory"
   file:
