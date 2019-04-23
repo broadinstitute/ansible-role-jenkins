@@ -2,9 +2,7 @@
   user:
     name: jenkins
     state: present
-    generate_ssh_key: yes
-    ssh_key_bits: 2048
-    ssh_key_file: .ssh/id_rsa
+    generate_ssh_key: no
 
 - name: "creating jenkings tmp directory"
   file:
@@ -62,3 +60,10 @@
   template:
     src: default.conf.j2
     dest: /app/default.conf
+
+- name: "creating jenkings private_key file"
+  copy:
+    content: "{{ jenkins_ssh_priv_vault_path.private_key }}"
+    dest: "{{ jenkins_ssh_privkey_path }}"
+    mode: 0600
+    owner: "jenkins"

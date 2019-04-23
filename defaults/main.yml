@@ -9,6 +9,8 @@ jenkins_logs: "/app/jenkins_logs"
 jenkins_java_opts: "-Djenkins.install.runSetupWizard=false"
 uid: 1000
 gid: 1000
+jenkins_ssh_privkey_path: "/home/jenkins/.ssh/id_rsa"
+
 
 #nginx reverse proxy vars
 nginx_http_port:  80
@@ -28,6 +30,7 @@ vault_key_path: "secret/dsde/dsp-techops/common/server.key"
 vault_cert_path: "secret/dsde/dsp-techops/common/server.crt"
 dockercfg_vault_path: "secret/dsde/dsp-techops/dev/common/jenkins_creds.json"
 jenkins_ssh_vault_path: "secret/dsde/dsp-techops/dev/common/jenkins_creds.json"
+jenkins_ssh_priv_vault_path: "secret/dsde/dsp-techops/dev/common/jenkins_creds.json"
 
 #vault lookups
 dockercfg: "{{ lookup('hashi_vault', 'secret={{ dockercfg_vault_path }} token={{ VAULT_TOKEN.stdout }} url={{ VAULT_ADDR.stdout }}') }}"
