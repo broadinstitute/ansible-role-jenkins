@@ -8,8 +8,8 @@ jenkins_logs: "/app/jenkins_logs"
 jenkins_java_opts: "-Djenkins.install.runSetupWizard=false"
 uid: 1000
 gid: 1000
-server_key: "{{ lookup("hashi_vault", "secret=secret/dsde/dsp-techops/common/server.key token={{ VAULT_TOKEN }} url={{ VAULT_ADDR }}") }}"
-server_cert: "{{ lookup("hashi_vault", "secret=secret/dsde/dsp-techops/common/server.crt token={{ VAULT_TOKEN }} url={{ VAULT_ADDR }}") }}"
+server_key: "{{ lookup('hashi_vault', 'secret=secret/dsde/dsp-techops/common/server.key token={{ VAULT_TOKEN.stdout }} url={{ VAULT_ADDR.stdout }}') }}"
+server_cert: "{{ lookup('hashi_vault', 'secret=secret/dsde/dsp-techops/common/server.crt token={{ VAULT_TOKEN.stdout }} url={{ VAULT_ADDR.stdout }}') }}"
 nginx_http_port:  80
 nginx_https_port: 443
 nginx_url: "duos-jenkins.dsp-techops.broadinstitute.org"
