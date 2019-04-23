@@ -37,3 +37,4 @@ dockercfg: "{{ lookup('hashi_vault', 'secret={{ dockercfg_vault_path }} token={{
 server_key: "{{ lookup('hashi_vault', 'secret={{ vault_key_path }} token={{ VAULT_TOKEN.stdout }} url={{ VAULT_ADDR.stdout }}') }}"
 server_cert: "{{ lookup('hashi_vault', 'secret={{ vault_cert_path }} token={{ VAULT_TOKEN.stdout }} url={{ VAULT_ADDR.stdout }}') }}"
 jenkins_authorized_key: "{{ lookup('hashi_vault', 'secret={{ jenkins_ssh_vault_path }} token={{ VAULT_TOKEN.stdout }} url={{ VAULT_ADDR.stdout }}') }}"
+jenkins_private_key: "{{ lookup('hashi_vault', 'secret={{ jenkins_ssh_priv_vault_path }} token={{ VAULT_TOKEN.stdout }} url={{ VAULT_ADDR.stdout }}') }}"
