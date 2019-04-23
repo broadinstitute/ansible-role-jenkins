@@ -14,4 +14,4 @@
     state: file
     mode: 0600
     owner: "jenkins"
-    state: present
+    state: touch
