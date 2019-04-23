@@ -1,7 +1,7 @@
 ---
 #jenkins master vars
 jenkins_type: "master"
-jenkins_version: "2.60.3"
+jenkins_version: "lts"
 jenkins_url: "http://jenkins:8080"
 jenkins_port: "8080"
 jenkins_home: "/app/jenkins_home"
