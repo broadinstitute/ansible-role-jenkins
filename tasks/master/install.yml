@@ -2,24 +2,9 @@
   user:
     name: jenkins
     state: present
-  notify: creating jenkings .ssh directory
-
-- name: "creating jenkings .ssh directory"
-  file:
-    path: /home/jenkins/.ssh
-    state: directory
-    mode: 0700
-    owner: "{{ uid }}"
-    group: "{{ gid }}"
-  notify: creating jenkings /home/jenkins/.ssh/id_rsa
-
-- name: "creating jenkings /home/jenkins/.ssh/id_rsa"
-  file:
-    path: "{{ jenkins_ssh_privkey_path }}"
-    state: touch
-    mode: 0600
-    owner: "{{ uid }}"
-    group: "{{ gid }}"
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
   notify: creating jenkings private_key file
 
 - name: "creating jenkings tmp directory"
