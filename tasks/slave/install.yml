@@ -9,9 +9,13 @@
     - creating jenkings authorized_keys file
 
 - name: "creating jenkings authorized_keys file"
-  file:
-    path: /home/jenkins/.ssh/authorized_keys
-    state: file
+  copy:
+    content: "{{ jenkins_authorized_key.public_key }}"
+    dest: "{{ jenkins_authorized_key_path }}"
     mode: 0600
     owner: "jenkins"
-    state: touch
+
+- name: copy down docker_hub creds
+  copy:
+    content: "{{ dockercfg.docker_hub }}"
+    dest: "{{ dockercfg_path }}"
