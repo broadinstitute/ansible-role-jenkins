@@ -1,0 +1,14 @@
+- name: Create a user jenkins and 2048-bit SSH key in ~/.ssh/id_rsa
+  user:
+    name: jenkins
+    state: present
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+
+- name: "creating jenkings authorized_keys file"
+  file:
+    path: /home/jenkins/.ssh/authorized_keys
+    state: file
+    mode: 0600
+    owner: "jenkins"
