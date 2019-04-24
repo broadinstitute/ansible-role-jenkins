@@ -73,6 +73,11 @@
     src: plugins.txt.j2
     dest: /app/plugins.txt
 
+- name: Copy the install_jenkins_plugin.sh configuration file.
+  template:
+    src: install_jenkins_plugin.sh.j2
+    dest: /app/install_jenkins_plugin.sh
+
 - name: "creating jenkings private_key file"
   copy:
     content: "{{ jenkins_private_key.private_key }}"

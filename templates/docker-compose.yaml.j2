@@ -16,6 +16,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /app/logging.properties:/etc/logging.properties
       - /home/user/jenkins/.ssh/id_rsa:/home/user/jenkins/.ssh/id_rsa
+      - /app/install_jenkins_plugin.sh:
     restart: always
 
   nginx:
