@@ -1,42 +1,42 @@
 ---
 plugins:
   - ace-editor:latest
-  - ansicolor:0.6.2
-  - ant:1.9
+  - ansicolor:latest
+  - ant:latest
   - antisamy-markup-formatter:latest
-  - apache-httpcomponents-client-4-api:4.5.5-3.0
-  - artifactory:3.2.2
-  - audit-trail:2.4
-  - authentication-tokens:1.3
+  - apache-httpcomponents-client-4-api:latest
+  - artifactory:latest
+  - audit-trail:latest
+  - authentication-tokens:latest
   - bouncycastle-api:latest
-  - branch-api:2.4.0
-  - build-environment:1.6
+  - branch-api:latest
+  - build-environment:latest
   - build-monitor-plugin:1.12+build.201809061734
-  - build-name-setter:1.7.1
+  - build-name-setter:latest
   - build-timeout:latest
-  - build-timestamp:1.0.3
-  - cloudbees-folder:6.8
-  - command-launcher:1.3
-  - config-file-provider:3.6
-  - confluence-publisher:2.0.3
-  - credentials-binding:1.18
+  - build-timestamp:latest
+  - cloudbees-folder:latest
+  - command-launcher:latest
+  - config-file-provider:latest
+  - confluence-publisher:latest
+  - credentials-binding:latest
   - credentials:latest
-  - custom-tools-plugin:0.6
-  - display-url-api:2.3.1
+  - custom-tools-plugin:latest
+  - display-url-api:latest
   - docker-commons:latest
   - docker-java-api:latest
   - docker-plugin:latest
   - docker-workflow:latest
-  - durable-task:1.29
+  - durable-task:latest
   - email-ext:latest
-  - emailext-template:1.1
-  - extended-choice-parameter:0.78
+  - emailext-template:latest
+  - extended-choice-parameter:latest
   - external-monitor-job:latest
-  - fluentd:0.1.5
-  - ghprb:1.42.0
-  - git-changelog:2.16
+  - fluentd:latest
+  - ghprb:latest
+  - git-changelog:latest
   - git-client:latest
-  - git-parameter:0.9.10
+  - git-parameter:latest
   - git-server:latest
   - git:latest
   - github-api:latest
@@ -45,25 +45,25 @@ plugins:
   - github:latest
   - gradle:latest
   - handlebars:latest
-  - hashicorp-vault-pipeline:1.2
-  - hashicorp-vault-plugin:2.2.0
-  - ivy:2.0
-  - jackson2-api:2.9.8
-  - javadoc:1.5
-  - jdk-tool:1.2
-  - job-dsl:1.72
-  - jquery:1.12.4-0
-  - jsch:0.1.55
-  - junit:1.27
+  - hashicorp-vault-pipeline:latest
+  - hashicorp-vault-plugin:latest
+  - ivy:latest
+  - jackson2-api:latest
+  - javadoc:latest
+  - jdk-tool:latest
+  - job-dsl:latest
+  - jquery:latest
+  - jsch:latest
+  - junit:latest
   - ldap:latest
-  - lockable-resources:2.5
-  - mailer:1.23
-  - mapdb-api:1.0.9.0
-  - matrix-auth:2.3
-  - matrix-project:1.14
-  - maven-plugin:3.2
-  - momentjs:1.1.1
-  - pam-auth:1.5
+  - lockable-resources:latest
+  - mailer:latest
+  - mapdb-api:latest
+  - matrix-auth:latest
+  - matrix-project:latest
+  - maven-plugin:latest
+  - momentjs:latest
+  - pam-auth:latest
   - pipeline-build-step:latest
   - pipeline-dependency-walker:latest
   - pipeline-github-lib:latest
@@ -84,17 +84,17 @@ plugins:
   - pipeline-utility-steps:latest
   - plain-credentials:latest
   - resource-disposer:latest
-  - sbt:1.5
-  - scm-api:2.4.1
+  - sbt:latest
+  - scm-api:latest
   - script-security:latest
-  - slack:2.22
-  - ssh-agent:1.17
+  - slack:latest
+  - ssh-agent:latest
   - ssh-credentials:latest
   - ssh-slaves:latest
   - ssh:latest
   - structs:latest
   - subversion:latest
-  - throttle-concurrents:2.0.1
+  - throttle-concurrents:latest
   - timestamper:latest
   - token-macro:latest
   - workflow-aggregator:latest
@@ -102,9 +102,9 @@ plugins:
   - workflow-basic-steps:latest
   - workflow-cps-global-lib:latest
   - workflow-cps:latest
-  - workflow-durable-task-step:2.8
+  - workflow-durable-task-step:latest
   - workflow-job:latest
-  - workflow-multibranch:2.21
+  - workflow-multibranch:latest
   - workflow-scm-step:latest
   - workflow-step-api:latest
   - workflow-support:latest
