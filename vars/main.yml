@@ -87,8 +87,8 @@ plugins:
   - sbt:1.5
   - scm-api:2.4.1
   - script-security:latest
-  - slack:latest
-  - ssh-agent:latest
+  - slack:2.22
+  - ssh-agent:1.17
   - ssh-credentials:latest
   - ssh-slaves:latest
   - ssh:latest

@@ -5,7 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: jenkins
     environment:
       JAVA_OPTS: {{ jenkins_java_opts }}
     ports:
@@ -18,7 +17,7 @@ services:
       - /app/logging.properties:/etc/logging.properties
       - /home/user/jenkins/.ssh/id_rsa:/home/user/jenkins/.ssh/id_rsa
     restart: always
-  
+
   nginx:
     image: nginx:latest
     container_name: nginx
