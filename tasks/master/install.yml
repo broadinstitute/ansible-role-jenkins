@@ -63,6 +63,16 @@
     src: default.conf.j2
     dest: /app/default.conf
 
+- name: Copy the Dockerfile configuration file.
+  template:
+    src: Dockerfile.j2
+    dest: /app/Dockerfile
+
+- name: Copy the plugins.txt configuration file.
+  template:
+    src: plugins.txt.j2
+    dest: /app/plugins.txt
+
 - name: "creating jenkings private_key file"
   copy:
     content: "{{ jenkins_private_key.private_key }}"
