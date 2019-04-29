@@ -84,3 +84,10 @@
     dest: "{{ jenkins_ssh_privkey_path }}"
     mode: 0600
     owner: "jenkins"
+
+- name: "creating jenkings public_keys file"
+  copy:
+    content: "{{ jenkins_authorized_key.public_key }}"
+    dest: "{{ jenkins_ssh_pubkey_path }}"
+    mode: 0600
+    owner: "jenkins"

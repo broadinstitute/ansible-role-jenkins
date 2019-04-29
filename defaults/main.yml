@@ -10,6 +10,8 @@ jenkins_java_opts: "-Djenkins.install.runSetupWizard=false"
 uid: 1000
 gid: 1000
 jenkins_ssh_privkey_path: "/home/jenkins/.ssh/id_rsa"
+jenkins_ssh_pubkey_path: "/home/jenkins/.ssh/id_rsa.pub"
+
 
 
 #nginx reverse proxy vars
