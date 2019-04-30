@@ -21,8 +21,6 @@
     mode: 0755
     owner: "root"
     group: "root"
-
-- name: "touchfiles apache tls directory"
   file:
     path: "{{ nginx_tls_key }}"
     state: touch
