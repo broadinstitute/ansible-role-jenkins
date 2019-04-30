@@ -14,6 +14,14 @@
     owner: "{{ uid }}"
     group: "{{ gid }}"
 
+- name: "creating apache tls directory {{ nginx_tls_dir }}"
+  file:
+    path: "{{ nginx_tls_dir }}"
+    state: directory
+    mode: 0755
+    owner: "root"
+    group: "root"
+
 - name: "creating jenkings working directory {{ jenkins_home }}"
   file:
     path: "{{ jenkins_home }}"
@@ -30,14 +38,6 @@
     owner: "{{ uid }}"
     group: "{{ gid }}"
 
-- name: "creating apache tls directory {{ nginx_tls_dir }}"
-  file:
-    path: "{{ nginx_tls_dir }}"
-    state: directory
-    mode: 0755
-    owner: "root"
-    group: "root"
-
 - name: copy down server_key to /app dir
   copy:
     content: "{{ server_key.value }}"
@@ -51,8 +51,6 @@
     content: "{{ server_cert.value }}"
     dest: "{{ nginx_tls_cert }}"
     backup: yes
-    mode: 0755
-    owner: root
 
 - name: Copy the docker compose configuration file for docker.
   template:
