@@ -18,8 +18,8 @@ jenkins_ssh_pubkey_path: "/home/jenkins/.ssh/id_rsa.pub"
 nginx_http_port:  80
 nginx_https_port: 443
 nginx_url: "duos-jenkins.dsp-techops.broadinstitute.org"
-nginx_tls_key: /app/tls/server.key
-nginx_tls_cert: /app/tls/server.crt
+nginx_tls_key: "/app/tls/server.key"
+nginx_tls_cert: "/app/tls/server.crt"
 nginx_tls_dir: "/app/tls"
 nginx_conf: "/app/default.conf"
 
