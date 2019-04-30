@@ -22,6 +22,14 @@
     owner: "root"
     group: "root"
 
+- name: "touchfiles apache tls directory"
+  file:
+    path: "{{ nginx_tls_key }}"
+    state: touch
+  file:
+    path: "{{ nginx_tls_cert }}"
+    state: touch
+
 - name: "creating jenkings working directory {{ jenkins_home }}"
   file:
     path: "{{ jenkins_home }}"
