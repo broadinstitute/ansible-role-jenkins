@@ -14,22 +14,6 @@
     owner: "{{ uid }}"
     group: "{{ gid }}"
 
-- name: "creating apache tls directory {{ nginx_tls_dir }}"
-  file:
-    path: "{{ nginx_tls_dir }}"
-    state: directory
-    mode: 0755
-    owner: "root"
-    group: "root"
-
-- name: "touchfiles apache tls directory"
-  file:
-    path: "{{ nginx_tls_key }}"
-    state: touch
-  file:
-    path: "{{ nginx_tls_cert }}"
-    state: touch
-
 - name: "creating jenkings working directory {{ jenkins_home }}"
   file:
     path: "{{ jenkins_home }}"
@@ -46,19 +30,23 @@
     owner: "{{ uid }}"
     group: "{{ gid }}"
 
+- name: "creating apache tls directory {{ nginx_tls_dir }}"
+  file:
+    path: "{{ nginx_tls_dir }}"
+    state: directory
+    mode: 0755
+    owner: "root"
+    group: "root"
+
 - name: copy down server_key to /app dir
   copy:
     content: "{{ server_key.value }}"
     dest: "{{ nginx_tls_key }}"
-    backup: yes
-    mode: 0755
-    owner: root
 
 - name: copy down server_cert to /app dir
   copy:
     content: "{{ server_cert.value }}"
     dest: "{{ nginx_tls_cert }}"
-    backup: yes
 
 - name: Copy the docker compose configuration file for docker.
   template:
@@ -96,7 +84,6 @@
     dest: "{{ jenkins_ssh_privkey_path }}"
     mode: 0600
     owner: "jenkins"
-    backup: yes
 
 - name: "creating jenkings public_keys file"
   copy:
@@ -104,4 +91,3 @@
     dest: "{{ jenkins_ssh_pubkey_path }}"
     mode: 0600
     owner: "jenkins"
-    backup: yes
