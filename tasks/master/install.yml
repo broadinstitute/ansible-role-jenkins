@@ -56,13 +56,13 @@
   copy:
     content: "{{ server_key.value }}"
     dest: "{{ nginx_tls_key }}"
-   when: tls_key.stat.exists == True
+   when: tls_key.stat.exists
 
 - name: copy down server_cert to /app dir
   copy:
     content: "{{ server_cert.value }}"
     dest: "{{ nginx_tls_cert }}"
-  when: tls_cert.stat.exists == True
+  when: tls_cert.stat.exists
 
 - name: Copy the docker compose configuration file for docker.
   template:
