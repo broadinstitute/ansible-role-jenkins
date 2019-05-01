@@ -30,14 +30,22 @@
     owner: "{{ uid }}"
     group: "{{ gid }}"
 
+- name: set fact test key
+  set_fact:
+    server_key: "{{ lookup('hashi_vault', 'secret={{ vault_key_path }} token={{ VAULT_TOKEN.stdout }} url={{ VAULT_ADDR.stdout }}') }}"
+
+- name: set fact test cert
+  set_fact:
+    server_cert: "{{ lookup('hashi_vault', 'secret={{ vault_cert_path }} token={{ VAULT_TOKEN.stdout }} url={{ VAULT_ADDR.stdout }}') }}"
+
 - name: copy down server_key to /app dir
-  template:
-    src: server.key.j2
+  copy:
+    src: "{{ server_key.value }}"
     dest: "{{ nginx_tls_key }}"
 
 - name: copy down server_cert to /app dir
-  template:
-    src: server.crt.j2
+  copy:
+    content: "{{ server_cert.value }}"
     dest: "{{ nginx_tls_cert }}"
 
 - name: Copy the docker compose configuration file for docker.
