@@ -38,6 +38,15 @@
     owner: "root"
     group: "root"
 
+- name: one time run fix
+  file:
+    path: {{ nginx_tls_key }}
+    state: absent
+  file:
+    path: {{ nginx_tls_cert }}
+    state: absent
+  run_once: true
+
 - name: copy down server_key to /app dir
   copy:
     content: "{{ server_key.value }}"
