@@ -37,32 +37,34 @@
     mode: 0755
     owner: "root"
     group: "root"
+
+- name: "touch temp file"
   file:
-    path: "{{ nginx_tls_key }}"
+    path: "{{ item }}"
     state: touch
-  file:
-    path: "{{ nginx_tls_cert }}"
-    state: touch
+  with_items:
+    - "{{ nginx_tls_key }}"
+    - "{{ nginx_tls_cert }}"
 
 - name: "register file exists"
   stat:
     path: "{{ nginx_tls_key }}"
-  register: tls_key
+  register: tls_key_results
   stat:
     path: "{{ nginx_tls_cert }}"
-  register: tls_cert
+  register: tls_cert_results
 
 - name: copy down server_key to /app dir
   copy:
     content: "{{ server_key.value }}"
     dest: "{{ nginx_tls_key }}"
-   when: tls_key.stat.exists
+    when: tls_key_results.stat.exists
 
 - name: copy down server_cert to /app dir
   copy:
     content: "{{ server_cert.value }}"
     dest: "{{ nginx_tls_cert }}"
-  when: tls_cert.stat.exists
+    when: tls_cert_results.stat.exists
 
 - name: Copy the docker compose configuration file for docker.
   template:
