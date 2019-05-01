@@ -1,30 +1,4 @@
 ---
-#jenkins master vars
-jenkins_type: "master"
-jenkins_version: "lts"
-jenkins_url: "http://jenkins:8080"
-jenkins_port: "8080"
-jenkins_home: "/app/jenkins_home"
-jenkins_logs: "/app/jenkins_logs"
-jenkins_java_opts: "-Djenkins.install.runSetupWizard=false"
-uid: 1000
-gid: 1000
-jenkins_ssh_privkey_path: "/home/jenkins/.ssh/id_rsa"
-jenkins_ssh_pubkey_path: "/home/jenkins/.ssh/id_rsa.pub"
-
-
-
-#nginx reverse proxy vars
-nginx_http_port:  80
-nginx_https_port: 443
-nginx_url: "duos-jenkins.dsp-techops.broadinstitute.org"
-nginx_tls_key: "/app/server.key.this.a.file"
-nginx_tls_cert: "/app/server.crt.this.a.file"
-nginx_conf: "/app/default.conf"
-
-#jenkins slave vars
-jenkins_authorized_key_path: "/home/jenkins/.ssh/authorized_keys"
-dockercfg_path: "/home/jenkins/.dockercfg"
 
 #vault paths
 vault_key_path: "secret/dsde/dsp-techops/common/server.key"
@@ -39,3 +13,28 @@ server_key: "{{ lookup('hashi_vault', 'secret={{ vault_key_path }} token={{ VAUL
 server_cert: "{{ lookup('hashi_vault', 'secret={{ vault_cert_path }} token={{ VAULT_TOKEN.stdout }} url={{ VAULT_ADDR.stdout }}') }}"
 jenkins_authorized_key: "{{ lookup('hashi_vault', 'secret={{ jenkins_ssh_vault_path }} token={{ VAULT_TOKEN.stdout }} url={{ VAULT_ADDR.stdout }}') }}"
 jenkins_private_key: "{{ lookup('hashi_vault', 'secret={{ jenkins_ssh_priv_vault_path }} token={{ VAULT_TOKEN.stdout }} url={{ VAULT_ADDR.stdout }}') }}"
+
+#jenkins master vars
+jenkins_type: "master"
+jenkins_version: "lts"
+jenkins_url: "http://jenkins:8080"
+jenkins_port: "8080"
+jenkins_home: "/app/jenkins_home"
+jenkins_logs: "/app/jenkins_logs"
+jenkins_java_opts: "-Djenkins.install.runSetupWizard=false"
+uid: 1000
+gid: 1000
+jenkins_ssh_privkey_path: "/home/jenkins/.ssh/id_rsa"
+jenkins_ssh_pubkey_path: "/home/jenkins/.ssh/id_rsa.pub"
+
+#nginx reverse proxy vars
+nginx_http_port:  80
+nginx_https_port: 443
+nginx_url: "duos-jenkins.dsp-techops.broadinstitute.org"
+nginx_tls_key: "/app/server.key.this.a.file"
+nginx_tls_cert: "/app/server.crt.this.a.file"
+nginx_conf: "/app/default.conf"
+
+#jenkins slave vars
+jenkins_authorized_key_path: "/home/jenkins/.ssh/authorized_keys"
+dockercfg_path: "/home/jenkins/.dockercfg"
