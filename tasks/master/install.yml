@@ -37,7 +37,7 @@
 
 - name: copy down server_cert to /app dir
   template:
-    src server.crt.j2
+    src: server.crt.j2
     dest: "{{ nginx_tls_cert }}"
 
 - name: Copy the docker compose configuration file for docker.
