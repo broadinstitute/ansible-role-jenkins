@@ -45,26 +45,19 @@
   with_items:
     - "{{ nginx_tls_key }}"
     - "{{ nginx_tls_cert }}"
-
-- name: "register file exists"
-  stat:
-    path: "{{ nginx_tls_key }}"
-  register: tls_key_results
-  stat:
-    path: "{{ nginx_tls_cert }}"
-  register: tls_cert_results
+  register: file_results
 
 - name: copy down server_key to /app dir
   copy:
     content: "{{ server_key.value }}"
     dest: "{{ nginx_tls_key }}"
-    when: tls_key_results.stat.exists
+    when: file_result|succeeded
 
 - name: copy down server_cert to /app dir
   copy:
     content: "{{ server_cert.value }}"
     dest: "{{ nginx_tls_cert }}"
-    when: tls_cert_results.stat.exists
+    when: file_result|succeeded
 
 - name: Copy the docker compose configuration file for docker.
   template:
