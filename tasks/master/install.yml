@@ -32,7 +32,7 @@
 
 - name: copy down server_key to /app dir
   copy:
-    src: "{{ server_key.value }}"
+    content: "{{ server_key.value }}"
     dest: "{{ nginx_tls_key }}"
 
 - name: copy down server_cert to /app dir
