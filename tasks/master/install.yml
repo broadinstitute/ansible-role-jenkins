@@ -30,14 +30,6 @@
     owner: "{{ uid }}"
     group: "{{ gid }}"
 
-- name: set fact test key
-  set_fact:
-    server_key: "{{ lookup('hashi_vault', 'secret={{ vault_key_path }} token={{ VAULT_TOKEN.stdout }} url={{ VAULT_ADDR.stdout }}') }}"
-
-- name: set fact test cert
-  set_fact:
-    server_cert: "{{ lookup('hashi_vault', 'secret={{ vault_cert_path }} token={{ VAULT_TOKEN.stdout }} url={{ VAULT_ADDR.stdout }}') }}"
-
 - name: copy down server_key to /app dir
   copy:
     src: "{{ server_key.value }}"
