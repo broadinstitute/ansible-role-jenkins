@@ -42,11 +42,11 @@
   file:
     path: "{{ nginx_tls_key }}"
     state: absent
-    run_once: true
+  run_once: true
   file:
     path: "{{ nginx_tls_cert }}"
     state: absent
-    run_once: true
+  run_once: true
 
 - name: copy down server_key to /app dir
   copy:
