@@ -30,24 +30,6 @@
     owner: "{{ uid }}"
     group: "{{ gid }}"
 
-- name: "creating apache tls directory {{ nginx_tls_dir }}"
-  file:
-    path: "{{ nginx_tls_dir }}"
-    state: directory
-    mode: 0755
-    owner: "root"
-    group: "root"
-
-- name: "touch temp file"
-  file:
-    path: "{{ cert_item }}"
-    state: touch
-  with_items:
-    - "{{ nginx_tls_key }}"
-    - "{{ nginx_tls_cert }}"
-  loop_control:
-    loop_var: cert_item
-
 - name: copy down server_key to /app dir
   copy:
     content: "{{ server_key.value }}"
