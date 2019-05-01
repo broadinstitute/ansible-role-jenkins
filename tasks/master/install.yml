@@ -37,26 +37,32 @@
     mode: 0755
     owner: "root"
     group: "root"
-
-- name: one time run fix
   file:
     path: "{{ nginx_tls_key }}"
-    state: absent
-  run_once: true
+    state: touch
   file:
     path: "{{ nginx_tls_cert }}"
-    state: absent
-  run_once: true
+    state: touch
+
+- name: "register file exists"
+  stat:
+    path: "{{ nginx_tls_key }}"
+  register: tls_key
+  stat:
+    path: "{{ nginx_tls_cert }}"
+  register: tls_cert
 
 - name: copy down server_key to /app dir
   copy:
     content: "{{ server_key.value }}"
     dest: "{{ nginx_tls_key }}"
+   when: tls_key.stat.exists == True
 
 - name: copy down server_cert to /app dir
   copy:
     content: "{{ server_cert.value }}"
     dest: "{{ nginx_tls_cert }}"
+  when: tls_cert.stat.exists == True
 
 - name: Copy the docker compose configuration file for docker.
   template:
