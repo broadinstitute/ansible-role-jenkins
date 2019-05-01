@@ -40,11 +40,11 @@
 
 - name: one time run fix
   file:
-    path: {{ nginx_tls_key }}
+    path: "{{ nginx_tls_key }}"
     state: absent
     run_once: true
   file:
-    path: {{ nginx_tls_cert }}
+    path: "{{ nginx_tls_cert }}"
     state: absent
     run_once: true
 
