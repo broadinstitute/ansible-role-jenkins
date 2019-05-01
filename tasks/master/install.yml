@@ -31,13 +31,13 @@
     group: "{{ gid }}"
 
 - name: copy down server_key to /app dir
-  copy:
-    content: "{{ server_key.value }}"
+  template:
+    src: server.key.j2
     dest: "{{ nginx_tls_key }}"
 
 - name: copy down server_cert to /app dir
-  copy:
-    content: "{{ server_cert.value }}"
+  template:
+    src server.crt.j2
     dest: "{{ nginx_tls_cert }}"
 
 - name: Copy the docker compose configuration file for docker.
