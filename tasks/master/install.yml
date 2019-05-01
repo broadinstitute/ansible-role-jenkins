@@ -40,11 +40,13 @@
 
 - name: "touch temp file"
   file:
-    path: "{{ item }}"
+    path: "{{ cert_item }}"
     state: touch
   with_items:
     - "{{ nginx_tls_key }}"
     - "{{ nginx_tls_cert }}"
+  loop_control:
+    loop_var: cert_item
   register: file_results
 
 - name: copy down server_key to /app dir
