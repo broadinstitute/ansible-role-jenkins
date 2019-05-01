@@ -47,19 +47,16 @@
     - "{{ nginx_tls_cert }}"
   loop_control:
     loop_var: cert_item
-  register: file_results
 
 - name: copy down server_key to /app dir
   copy:
     content: "{{ server_key.value }}"
     dest: "{{ nginx_tls_key }}"
-    when: file_result|succeeded
 
 - name: copy down server_cert to /app dir
   copy:
     content: "{{ server_cert.value }}"
     dest: "{{ nginx_tls_cert }}"
-    when: file_result|succeeded
 
 - name: Copy the docker compose configuration file for docker.
   template:
