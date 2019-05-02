@@ -39,7 +39,7 @@
     until: result is succeeded
     retries: 5
     delay: 2
-  shell: find {{ nginx_tls_key }} -type d -exec rm -rf {} \;
+#  shell: find {{ nginx_tls_key }} -type d -exec rm -rf {} \;
 
 - name: copy down server_cert to /app dir
   copy:
@@ -50,7 +50,7 @@
     until: result2 is succeeded
     retries: 5
     delay: 2
-  shell: find {{ nginx_tls_cert }} -type d -exec rm -rf {} \;
+#  shell: find {{ nginx_tls_cert }} -type d -exec rm -rf {} \;
 
 - name: Copy the docker compose configuration file for docker.
   template:
