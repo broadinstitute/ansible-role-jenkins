@@ -34,22 +34,22 @@
   copy:
     content: "{{ server_key.value }}"
     dest: "{{ nginx_tls_key }}"
-    ignore_errors: yes
-    register: result
-    until: result is succeeded
-    retries: 5
-    delay: 2
+  ignore_errors: yes
+  register: result
+  until: result is succeeded
+  retries: 5
+  delay: 2
 #  shell: find {{ nginx_tls_key }} -type d -exec rm -rf {} \;
 
 - name: copy down server_cert to /app dir
   copy:
     content: "{{ server_cert.value }}"
     dest: "{{ nginx_tls_cert }}"
-    ignore_errors: yes
-    register: result2
-    until: result2 is succeeded
-    retries: 5
-    delay: 2
+  ignore_errors: yes
+  register: result2
+  until: result2 is succeeded
+  retries: 5
+  delay: 2
 #  shell: find {{ nginx_tls_cert }} -type d -exec rm -rf {} \;
 
 - name: Copy the docker compose configuration file for docker.
