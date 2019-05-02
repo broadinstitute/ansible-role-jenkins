@@ -1,0 +1,3 @@
+- name: bug_rerun
+  service: name=memcached state=restarted
+  listen: ""

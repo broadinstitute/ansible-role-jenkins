@@ -34,11 +34,31 @@
   copy:
     content: "{{ server_key.value }}"
     dest: "{{ nginx_tls_key }}"
+    ignore_errors: yes
+    register: task_result
+    until: result is succeeded
+    retries: 5
+    delay: 2
+  stat:
+    path: "{{ nginx_tls_key }}"
+    register: file
+  shell: find {{ nginx_tls_key }} -type d -exec rm -rf {} \;
+  when: file.stat.isdir
 
 - name: copy down server_cert to /app dir
   copy:
     content: "{{ server_cert.value }}"
     dest: "{{ nginx_tls_cert }}"
+    ignore_errors: yes
+    register: task_result
+    until: result is succeeded
+    retries: 5
+    delay: 2
+  stat:
+    path: "{{ nginx_tls_cert }}"
+    register: file2
+  shell: find {{ nginx_tls_cert }} -type d -exec rm -rf {} \;
+  when: file2.stat.isdir
 
 - name: Copy the docker compose configuration file for docker.
   template:
