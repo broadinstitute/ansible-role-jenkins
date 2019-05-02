@@ -35,7 +35,7 @@
     content: "{{ server_key.value }}"
     dest: "{{ nginx_tls_key }}"
     ignore_errors: yes
-    register: task_result
+    register: result
     until: result is succeeded
     retries: 5
     delay: 2
@@ -46,8 +46,8 @@
     content: "{{ server_cert.value }}"
     dest: "{{ nginx_tls_cert }}"
     ignore_errors: yes
-    register: task_result
-    until: result is succeeded
+    register: result2
+    until: result2 is succeeded
     retries: 5
     delay: 2
   shell: find {{ nginx_tls_cert }} -type d -exec rm -rf {} \;
