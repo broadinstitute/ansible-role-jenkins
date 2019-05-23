@@ -160,4 +160,9 @@ gitrepos:
   ```
   ##### Example Results
   - 1 Master node running on docker with 100G HDD
-  - 1 Slave node running on VM instance with 100G HDD with kubectl and docker installed for jenkins to use. 
+  - 1 Slave node running on VM instance with 100G HDD with kubectl and docker installed for jenkins to use.
+
+  ##### To-Do:
+  groovy script/code to auto add slave to master
+  auto add dsde secrets
+  
