@@ -30,7 +30,7 @@
     owner: "{{ uid }}"
     group: "{{ gid }}"
 
-- name: copy down server_key to /app dir
+- name: copy down server.key to /app dir
   copy:
     content: "{{ server_key.value }}"
     dest: "{{ nginx_tls_key }}"
@@ -39,18 +39,30 @@
   until: result is succeeded
   retries: 5
   delay: 2
-#  shell: find {{ nginx_tls_key }} -type d -exec rm -rf {} \;
 
-- name: copy down server_cert to /app dir
+- name: copy down server.crt to /app dir
   copy:
-    content: "{{ server_cert.chain }}"
+    content: "{{ server_cert.value }}"
     dest: "{{ nginx_tls_cert }}"
   ignore_errors: yes
   register: result2
   until: result2 is succeeded
   retries: 5
   delay: 2
-#  shell: find {{ nginx_tls_cert }} -type d -exec rm -rf {} \;
+
+- name: copy down ca-bundle.crt to /app dir
+  copy:
+    content: "{{ server_ca.chain }}"
+    dest: "{{ nginx_tls_ca }}"
+  ignore_errors: yes
+  register: result3
+  until: result3 is succeeded
+  retries: 5
+  delay: 2
+
+- name: concatitnate server.crt.org with ca-bundle.crt to create server.crt for nginx
+  shell: "cat {{ nginx_tls_cert }} {{ nginx_tls_ca }} > /app/server.crt"
+  when: result3.changed
 
 - name: Copy the docker compose configuration file for docker.
   template:

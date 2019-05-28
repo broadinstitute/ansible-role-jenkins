@@ -3,6 +3,7 @@
 #vault paths
 vault_key_path: "secret/dsde/dsp-techops/common/server.key"
 vault_cert_path: "secret/dsde/dsp-techops/common/server.crt"
+vault_ca_path: "secret/dsde/dsp-techops/common/ca-bundle.crt"
 dockercfg_vault_path: "secret/dsde/dsp-techops/dev/common/jenkins_creds.json"
 jenkins_ssh_vault_path: "secret/dsde/dsp-techops/dev/common/jenkins_creds.json"
 jenkins_ssh_priv_vault_path: "secret/dsde/dsp-techops/dev/common/jenkins_creds.json"
@@ -13,6 +14,7 @@ jenkins_authorized_key: "{{ lookup('hashi_vault', 'secret={{ jenkins_ssh_vault_p
 jenkins_private_key: "{{ lookup('hashi_vault', 'secret={{ jenkins_ssh_priv_vault_path }} token={{ VAULT_TOKEN.stdout }} url={{ VAULT_ADDR.stdout }}') }}"
 server_cert: "{{ lookup('hashi_vault', 'secret={{ vault_cert_path }} token={{ VAULT_TOKEN.stdout }} url={{ VAULT_ADDR.stdout }}') }}"
 server_key: "{{ lookup('hashi_vault', 'secret={{ vault_key_path }} token={{ VAULT_TOKEN.stdout }} url={{ VAULT_ADDR.stdout }}') }}"
+server_ca: "{{ lookup('hashi_vault', 'secret={{ vault_ca_path }} token={{ VAULT_TOKEN.stdout }} url={{ VAULT_ADDR.stdout }}') }}"
 
 #jenkins master vars
 jenkins_type: "master"
@@ -32,8 +34,10 @@ nginx_http_port:  80
 nginx_https_port: 443
 nginx_url: "duos-jenkins.dsp-techops.broadinstitute.org"
 nginx_tls_key: "/app/server.key"
-nginx_tls_cert: "/app/server.crt"
+nginx_tls_cert: "/app/server.crt.org"
+nginx_tls_ca: "/app/ca-bundle.crt"
 nginx_conf: "/app/default.conf"
+
 
 #jenkins slave vars
 jenkins_authorized_key_path: "/home/jenkins/.ssh/authorized_keys"
