@@ -1,7 +1,7 @@
 ---
 # If precommit is not installed
 # Please run "brew install pre-commit"
-# Please run "pre-commit install"
+# Please run "pre-commit install" in the local repo
 - repo: local
   hooks:
   -   id: ansible-lint
