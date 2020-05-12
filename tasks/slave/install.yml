@@ -19,3 +19,7 @@
   copy:
     content: "{{ dockercfg.docker_hub }}"
     dest: "{{ dockercfg_path }}"
+
+- name: install pip libs
+  pip:
+    name: python-dateutil
